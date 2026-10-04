@@ -1,0 +1,6 @@
+SQLITE 3.53.4 vfs=unix-none
+id=3 name=cookie v=-1.5 len=6
+id=1 name=amiga v=3.2 len=5
+id=2 name=webkit v=605.1 len=6
+n=3 total=606.80000000000007 u=OK
+SQLITE_DONE rc=0

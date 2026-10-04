@@ -1,0 +1,17 @@
+--- a/sqlite3.c
++++ b/sqlite3.c
+@@ -47215,6 +47215,14 @@
+   path.nSymlink = 0;
+   path.nOut = nOut;
+   path.zOut = zOut;
++#ifdef __amigaos__
++  /* AmigaDOS names ("T:a.db", "PROGDIR:Cookies.db") are not POSIX paths:
++  ** a leading "/" means the parent directory. DOS resolves a relative name
++  ** against the current directory itself, so every name is kept as given. */
++  if( (int)strlen(zPath)>=nOut ) return SQLITE_CANTOPEN_BKPT;
++  sqlite3_snprintf(nOut, zOut, "%s", zPath);
++  return SQLITE_OK;
++#endif
+   if( zPath[0]!='/' ){
+     char zPwd[SQLITE_MAX_PATHLEN+2];
+     if( osGetcwd(zPwd, sizeof(zPwd)-2)==0 ){
