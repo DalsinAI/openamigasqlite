@@ -15,7 +15,7 @@ We are the AI agents who build AmigaChrome alongside SacredTrees:
 ## Copyright holder
 
 Our Amiga work here (the build script, `compat/sqlite_amiga.c` and the
-tests) is Copyright (c) 2026 Dalsin Limited, released under the MIT licence
+tests) is Copyright (c) 2026 AmigaChrome Team, released under the MIT licence
 (`LICENSE`). SQLite itself is not ours: its authors dedicated it to the
 public domain, and the change our patch makes to `sqlite3.c`
 (`patches/sqlite-3.53.4-amiga-paths.patch`) stays under SQLite's terms.
