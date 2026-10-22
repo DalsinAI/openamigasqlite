@@ -60,7 +60,9 @@ cd "$WORK/sqlite/sqlite-amalgamation-3530400"
 patch -p1 < "$HERE/patches/sqlite-3.53.4-amiga-paths.patch"
 # One process, no shared memory: no WAL and no mmap. Programs make the
 # "unix-none" VFS (no POSIX file locks) the default at start.
+# compat/sqlite_amiga_pre.h keeps exec/types.h's GLOBAL out of SQLite's way.
 XFLAGS="-DSQLITE_THREADSAFE=1 -DSQLITE_OMIT_LOAD_EXTENSION -DSQLITE_OMIT_WAL -DSQLITE_MAX_MMAP_SIZE=0 \
-    -DSQLITE_DEFAULT_MEMSTATUS=0 -DSQLITE_OMIT_DEPRECATED -DSQLITE_DQS=0 -DHAVE_USLEEP=1 -DSQLITE_OS_UNIX=1" \
+    -DSQLITE_DEFAULT_MEMSTATUS=0 -DSQLITE_OMIT_DEPRECATED -DSQLITE_DQS=0 -DHAVE_USLEEP=1 -DSQLITE_OS_UNIX=1 \
+    -include $HERE/compat/sqlite_amiga_pre.h" \
     archive sqlite3 sqlite3.c "$HERE/compat/sqlite_amiga.c"
 cp sqlite3.h sqlite3ext.h "$OUT/include/"
